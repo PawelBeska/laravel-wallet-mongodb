@@ -20,7 +20,7 @@ final class TransactionDto implements TransactionDtoInterface
         private string $uuid,
         private string $payableType,
         private int|string $payableId,
-        private int $walletId,
+        private int|string $walletId,
         private string $type,
         private float|int|string $amount,
         private bool $confirmed,

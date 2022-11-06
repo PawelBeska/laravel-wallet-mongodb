@@ -9,7 +9,7 @@ use DateTimeImmutable;
 final class BalanceUpdatedEvent implements BalanceUpdatedEventInterface
 {
     public function __construct(
-        private int $walletId,
+        private int|string $walletId,
         private string $walletUuid,
         private string $balance,
         private DateTimeImmutable $updatedAt

@@ -11,7 +11,7 @@ final class TransactionCreatedEvent implements TransactionCreatedEventInterface
     public function __construct(
         private int $id,
         private string $type,
-        private int $walletId,
+        private int|string $walletId,
         private DateTimeImmutable $createdAt,
     ) {
     }

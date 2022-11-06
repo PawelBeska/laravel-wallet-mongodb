@@ -52,7 +52,7 @@ class Item extends Model implements ProductLimitedInterface
     }
 
     /**
-     * @param int[] $walletIds
+     * @param int[]|string[] $walletIds
      */
     public function boughtGoods(array $walletIds): MorphMany
     {

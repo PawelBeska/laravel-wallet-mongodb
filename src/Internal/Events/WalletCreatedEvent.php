@@ -12,7 +12,7 @@ final class WalletCreatedEvent implements WalletCreatedEventInterface
         private string $holderType,
         private int|string $holderId,
         private string $walletUuid,
-        private int $walletId,
+        private string|int $walletId,
         private DateTimeImmutable $createdAt
     ) {
     }
