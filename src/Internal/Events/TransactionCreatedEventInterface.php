@@ -8,7 +8,7 @@ use DateTimeImmutable;
 
 interface TransactionCreatedEventInterface extends EventInterface
 {
-    public function getId(): int;
+    public function getId(): int|string;
 
     public function getType(): string;
 
