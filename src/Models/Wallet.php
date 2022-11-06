@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Bavix\Wallet\Models;
 
+use Illuminate\Database\RecordsNotFoundException;
+use Jenssegers\Mongodb\Eloquent\Model;
+use Jenssegers\Mongodb\Relations\MorphTo;
 use function app;
 use function array_key_exists;
 use Bavix\Wallet\Interfaces\Confirmable;
@@ -22,9 +25,6 @@ use Bavix\Wallet\Traits\CanExchange;
 use Bavix\Wallet\Traits\CanPayFloat;
 use Bavix\Wallet\Traits\HasGift;
 use function config;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\RecordsNotFoundException;
 use Illuminate\Support\Str;
 
 /**
