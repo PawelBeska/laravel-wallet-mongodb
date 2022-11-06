@@ -32,7 +32,7 @@ final class WalletCreatedEvent implements WalletCreatedEventInterface
         return $this->walletUuid;
     }
 
-    public function getWalletId(): int
+    public function getWalletId(): int|string
     {
         return $this->walletId;
     }

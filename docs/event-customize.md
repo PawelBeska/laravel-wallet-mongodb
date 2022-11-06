@@ -15,7 +15,7 @@ final class MyUpdatedEvent implements BalanceUpdatedEventInterface, ShouldBroadc
         private DateTimeImmutable $updatedAt,
     ) {}
     
-    public function getWalletId(): int { return $this->wallet->getKey(); }
+    public function getWalletId(): int|string { return $this->wallet->getKey(); }
     public function getWalletUuid(): string { return $this->wallet->uuid; }
     public function getBalance(): string { return $this->wallet->balanceInt; }
     public function getUpdatedAt(): DateTimeImmutable { return $this->updatedAt; }

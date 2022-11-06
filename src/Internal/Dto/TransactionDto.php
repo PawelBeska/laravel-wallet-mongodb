@@ -45,7 +45,7 @@ final class TransactionDto implements TransactionDtoInterface
         return $this->payableId;
     }
 
-    public function getWalletId(): int
+    public function getWalletId(): int|string
     {
         return $this->walletId;
     }

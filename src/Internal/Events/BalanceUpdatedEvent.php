@@ -16,7 +16,7 @@ final class BalanceUpdatedEvent implements BalanceUpdatedEventInterface
     ) {
     }
 
-    public function getWalletId(): int
+    public function getWalletId(): int|string
     {
         return $this->walletId;
     }

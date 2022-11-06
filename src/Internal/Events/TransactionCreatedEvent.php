@@ -26,7 +26,7 @@ final class TransactionCreatedEvent implements TransactionCreatedEventInterface
         return $this->type;
     }
 
-    public function getWalletId(): int
+    public function getWalletId(): int|string
     {
         return $this->walletId;
     }

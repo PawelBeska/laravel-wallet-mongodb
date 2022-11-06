@@ -12,7 +12,7 @@ interface TransactionCreatedEventInterface extends EventInterface
 
     public function getType(): string;
 
-    public function getWalletId(): int;
+    public function getWalletId(): int|string;
 
     public function getCreatedAt(): DateTimeImmutable;
 }
