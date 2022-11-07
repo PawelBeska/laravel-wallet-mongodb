@@ -34,12 +34,12 @@ final class TransferDto implements TransferDtoInterface
         return $this->uuid;
     }
 
-    public function getDepositId(): int
+    public function getDepositId(): int|string
     {
         return $this->depositId;
     }
 
-    public function getWithdrawId(): int
+    public function getWithdrawId(): int|string
     {
         return $this->withdrawId;
     }

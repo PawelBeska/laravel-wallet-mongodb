@@ -10,9 +10,9 @@ interface TransferDtoInterface
 {
     public function getUuid(): string;
 
-    public function getDepositId(): int;
+    public function getDepositId(): int|string;
 
-    public function getWithdrawId(): int;
+    public function getWithdrawId(): int|string;
 
     public function getStatus(): string;
 
