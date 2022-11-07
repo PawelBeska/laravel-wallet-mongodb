@@ -61,14 +61,6 @@ class Transfer extends Model
         'updated_at',
     ];
 
-    /**
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'deposit_id' => 'int',
-        'withdraw_id' => 'int',
-    ];
-
     public function getTable(): string
     {
         if ((string) $this->table === '') {
