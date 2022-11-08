@@ -30,15 +30,16 @@ final class DatabaseService implements DatabaseServiceInterface
                 return $callback();
             }
 
-            return $connection->transaction(function () use ($callback) {
-                $result = $callback();
+            $connection->beginTransaction();
 
-                if ($result === false || (is_countable($result) && count($result) === 0)) {
-                    throw new TransactionRollbackException($result);
-                }
+            $result = $callback();
 
-                return $result;
-            });
+            if ($result === false || (is_countable($result) && count($result) === 0)) {
+                $connection->rollBack();
+                throw new TransactionRollbackException($result);
+            }
+
+            $connection->commit();
         } catch (TransactionRollbackException $rollbackException) {
             return $rollbackException->getResult();
         } catch (RecordsNotFoundException|ExceptionInterface $exception) {
