@@ -40,6 +40,7 @@ final class DatabaseService implements DatabaseServiceInterface
             }
 
             $connection->commit();
+            return $result;
         } catch (TransactionRollbackException $rollbackException) {
             return $rollbackException->getResult();
         } catch (RecordsNotFoundException|ExceptionInterface $exception) {
