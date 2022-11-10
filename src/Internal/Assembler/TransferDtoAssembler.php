@@ -17,8 +17,8 @@ final class TransferDtoAssembler implements TransferDtoAssemblerInterface
     }
 
     public function create(
-        int $depositId,
-        int $withdrawId,
+        int|string $depositId,
+        int|string $withdrawId,
         string $status,
         Model $fromModel,
         Model $toModel,

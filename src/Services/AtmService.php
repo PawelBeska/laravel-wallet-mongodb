@@ -8,8 +8,10 @@ use Bavix\Wallet\Internal\Assembler\TransactionQueryAssemblerInterface;
 use Bavix\Wallet\Internal\Assembler\TransferQueryAssemblerInterface;
 use Bavix\Wallet\Internal\Dto\TransactionDtoInterface;
 use Bavix\Wallet\Internal\Dto\TransferDtoInterface;
+use Bavix\Wallet\Internal\Exceptions\ExceptionInterface;
 use Bavix\Wallet\Internal\Repository\TransactionRepositoryInterface;
 use Bavix\Wallet\Internal\Repository\TransferRepositoryInterface;
+use Bavix\Wallet\Internal\Service\DatabaseServiceInterface;
 use Bavix\Wallet\Models\Transaction;
 use Bavix\Wallet\Models\Transfer;
 
@@ -23,7 +25,8 @@ final class AtmService implements AtmServiceInterface
         private TransferQueryAssemblerInterface $transferQueryAssembler,
         private TransactionRepositoryInterface $transactionRepository,
         private TransferRepositoryInterface $transferRepository,
-        private AssistantServiceInterface $assistantService
+        private AssistantServiceInterface $assistantService,
+        private DatabaseServiceInterface $databaseService
     ) {
     }
 
@@ -31,13 +34,14 @@ final class AtmService implements AtmServiceInterface
      * @param non-empty-array<array-key, TransactionDtoInterface> $objects
      *
      * @return non-empty-array<string, Transaction>
+     * @throws ExceptionInterface
      */
     public function makeTransactions(array $objects): array
     {
         if (count($objects) === 1) {
             $items = [$this->transactionRepository->insertOne(reset($objects))];
         } else {
-            $this->transactionRepository->insert($objects);
+            $this->databaseService->transaction(fn() => $this->transactionRepository->insert($objects));
             $uuids = $this->assistantService->getUuids($objects);
             $query = $this->transactionQueryAssembler->create($uuids);
             $items = $this->transactionRepository->findBy($query);

@@ -15,8 +15,8 @@ final class TransferDto implements TransferDtoInterface
 
     public function __construct(
         private string $uuid,
-        private int $depositId,
-        private int $withdrawId,
+        private int|string $depositId,
+        private int|string $withdrawId,
         private string $status,
         private string $fromType,
         private int|string $fromId,
