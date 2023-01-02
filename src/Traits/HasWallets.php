@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bavix\Wallet\Traits;
 
+use Enum;
 use function array_key_exists;
 use Bavix\Wallet\Internal\Exceptions\ModelNotFoundException;
 use Bavix\Wallet\Models\Wallet as WalletModel;
@@ -37,9 +38,12 @@ trait HasWallets
      *
      * $user->getWallet('usd')->balance; // 50 $user->getWallet('rub')->balance; // 100
      */
-    public function getWallet(string $slug): ?WalletModel
+    public function getWallet(Enum|string $slug): ?WalletModel
     {
         try {
+            if($slug instanceof Enum) {
+                $slug = $slug->value;
+            }
             return $this->getWalletOrFail($slug);
         } catch (ModelNotFoundException) {
             return null;
