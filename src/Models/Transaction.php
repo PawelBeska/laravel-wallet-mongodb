@@ -10,8 +10,9 @@ use Bavix\Wallet\Models\Wallet as WalletModel;
 use Bavix\Wallet\Services\CastServiceInterface;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Jenssegers\Mongodb\Relations\BelongsTo;
+use Jenssegers\Mongodb\Relations\MorphTo;
+
 use function config;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * Class Transaction.
