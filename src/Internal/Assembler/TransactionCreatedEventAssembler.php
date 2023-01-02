@@ -23,6 +23,7 @@ final class TransactionCreatedEventAssembler implements TransactionCreatedEventA
             $transaction->type,
             $transaction->wallet_id,
             $this->clockService->now(),
+            $transaction
         );
     }
 }

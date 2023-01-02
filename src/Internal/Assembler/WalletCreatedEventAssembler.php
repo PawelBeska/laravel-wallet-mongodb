@@ -23,7 +23,8 @@ final class WalletCreatedEventAssembler implements WalletCreatedEventAssemblerIn
             $wallet->holder_id,
             $wallet->uuid,
             $wallet->getKey(),
-            $this->clockService->now()
+            $this->clockService->now(),
+            $wallet
         );
     }
 }

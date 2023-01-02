@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bavix\Wallet\Internal\Events;
 
+use Bavix\Wallet\Models\Wallet;
 use DateTimeImmutable;
 
 final class WalletCreatedEvent implements WalletCreatedEventInterface
@@ -13,7 +14,8 @@ final class WalletCreatedEvent implements WalletCreatedEventInterface
         private int|string $holderId,
         private string $walletUuid,
         private string|int $walletId,
-        private DateTimeImmutable $createdAt
+        private DateTimeImmutable $createdAt,
+        private Wallet $wallet
     ) {
     }
 
@@ -40,5 +42,10 @@ final class WalletCreatedEvent implements WalletCreatedEventInterface
     public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
+    }
+
+    public function getWallet(): Wallet
+    {
+        return $this->wallet;
     }
 }

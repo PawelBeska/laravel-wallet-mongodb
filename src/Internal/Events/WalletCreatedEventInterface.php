@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bavix\Wallet\Internal\Events;
 
+use Bavix\Wallet\Models\Wallet;
 use DateTimeImmutable;
 
 interface WalletCreatedEventInterface extends EventInterface
@@ -17,4 +18,6 @@ interface WalletCreatedEventInterface extends EventInterface
     public function getWalletUuid(): string;
 
     public function getCreatedAt(): DateTimeImmutable;
+
+    public function getWallet(): Wallet;
 }

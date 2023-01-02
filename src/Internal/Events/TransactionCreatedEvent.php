@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bavix\Wallet\Internal\Events;
 
+use Bavix\Wallet\Models\Transaction;
 use DateTimeImmutable;
 
 final class TransactionCreatedEvent implements TransactionCreatedEventInterface
@@ -13,6 +14,7 @@ final class TransactionCreatedEvent implements TransactionCreatedEventInterface
         private string $type,
         private int|string $walletId,
         private DateTimeImmutable $createdAt,
+        private Transaction $transaction,
     ) {
     }
 
@@ -34,5 +36,10 @@ final class TransactionCreatedEvent implements TransactionCreatedEventInterface
     public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
+    }
+
+    public function getTransaction(): Transaction
+    {
+        return $this->transaction;
     }
 }
