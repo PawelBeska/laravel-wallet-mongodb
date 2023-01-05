@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bavix\Wallet\Models;
 
+use Bavix\Wallet\Traits\HasMeta;
 use Illuminate\Database\RecordsNotFoundException;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Jenssegers\Mongodb\Relations\MorphTo;
@@ -50,6 +51,7 @@ class Wallet extends Model implements Customer, WalletFloat, Confirmable, Exchan
     use CanExchange;
     use CanPayFloat;
     use HasGift;
+    use HasMeta;
 
     /**
      * @var string[]

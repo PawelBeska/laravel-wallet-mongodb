@@ -6,14 +6,15 @@ namespace Bavix\Wallet\Internal\Events;
 
 use Bavix\Wallet\Models\Transaction;
 use DateTimeImmutable;
+use MongoDB\BSON\ObjectIdInterface;
 
 interface TransactionCreatedEventInterface extends EventInterface
 {
-    public function getId(): int|string;
+    public function getId(): ObjectIdInterface|int|string;
 
     public function getType(): string;
 
-    public function getWalletId(): int|string;
+    public function getWalletId(): ObjectIdInterface|int|string;
 
     public function getCreatedAt(): DateTimeImmutable;
 

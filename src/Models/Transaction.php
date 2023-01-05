@@ -8,6 +8,7 @@ use Bavix\Wallet\Interfaces\Wallet;
 use Bavix\Wallet\Internal\Service\MathServiceInterface;
 use Bavix\Wallet\Models\Wallet as WalletModel;
 use Bavix\Wallet\Services\CastServiceInterface;
+use Bavix\Wallet\Traits\HasMeta;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Jenssegers\Mongodb\Relations\BelongsTo;
 use Jenssegers\Mongodb\Relations\EmbedsOne;
@@ -35,6 +36,7 @@ use function config;
  */
 class Transaction extends Model
 {
+    use HasMeta;
     public const TYPE_DEPOSIT = 'deposit';
 
     public const TYPE_WITHDRAW = 'withdraw';
@@ -107,10 +109,5 @@ class Transaction extends Model
         $decimalPlaces = $math->powTen($decimalPlacesValue);
 
         $this->amount = $math->round($math->mul($amount, $decimalPlaces));
-    }
-
-    public function meta(): EmbedsOne
-    {
-        return $this->embedsOne(Meta::class);
     }
 }

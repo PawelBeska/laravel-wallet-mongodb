@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bavix\Wallet\Models;
 
+use Bavix\Wallet\Traits\HasMeta;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Jenssegers\Mongodb\Relations\BelongsTo;
 use Jenssegers\Mongodb\Relations\MorphTo;
@@ -33,6 +34,7 @@ use function config;
  */
 class Transfer extends Model
 {
+    use HasMeta;
     public const STATUS_EXCHANGE = 'exchange';
 
     public const STATUS_TRANSFER = 'transfer';

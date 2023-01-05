@@ -38,7 +38,6 @@ final class WalletService implements WalletServiceInterface
                 [
                     'holder_type' => $model->getMorphClass(),
                     'holder_id' => new ObjectId($model->getKey()),
-                    '_holder_id' => new ObjectId($model->getKey()),
                 ]
             )
         );
