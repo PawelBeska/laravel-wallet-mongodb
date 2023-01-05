@@ -32,7 +32,7 @@ final class WalletService implements WalletServiceInterface
             array_merge(
                 config('wallet.wallet.creating', []),
                 [
-                    'uuid' => new ObjectId($this->uuidFactoryService->uuid4()),
+                    'uuid' => $this->uuidFactoryService->uuid4(),
                 ],
                 $data,
                 [
