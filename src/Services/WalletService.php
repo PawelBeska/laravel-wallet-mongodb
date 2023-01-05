@@ -11,6 +11,7 @@ use Bavix\Wallet\Internal\Service\DispatcherServiceInterface;
 use Bavix\Wallet\Internal\Service\UuidFactoryServiceInterface;
 use Bavix\Wallet\Models\Wallet;
 use Illuminate\Database\Eloquent\Model;
+use MongoDB\BSON\ObjectId;
 
 /**
  * @internal
@@ -27,17 +28,19 @@ final class WalletService implements WalletServiceInterface
 
     public function create(Model $model, array $data): Wallet
     {
-        $wallet = $this->walletRepository->create(array_merge(
-            config('wallet.wallet.creating', []),
-            [
-                'uuid' => $this->uuidFactoryService->uuid4(),
-            ],
-            $data,
-            [
-                'holder_type' => $model->getMorphClass(),
-                'holder_id' => $model->getKey(),
-            ]
-        ));
+        $wallet = $this->walletRepository->create(
+            array_merge(
+                config('wallet.wallet.creating', []),
+                [
+                    'uuid' => new ObjectId($this->uuidFactoryService->uuid4()),
+                ],
+                $data,
+                [
+                    'holder_type' => $model->getMorphClass(),
+                    'holder_id' => new ObjectId($model->getKey()),
+                ]
+            )
+        );
 
         $event = $this->walletCreatedEventAssembler->create($wallet);
         $this->dispatcherService->dispatch($event);
